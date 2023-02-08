@@ -21,6 +21,7 @@ const btnStyles = cva(["btn"], {
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof btnStyles> & {
     rounded?: boolean;
+    outline?: boolean;
   };
 export const Button = ({
   children,
@@ -28,11 +29,12 @@ export const Button = ({
   size,
   className,
   rounded = false,
+  outline = false,
   ...rest
 }: ButtonProps) => (
   <button
-    className={`${btnStyles({ variant, size })} ${className} ${
-      rounded && "rounded-full"
+    className={`${btnStyles({ variant, size })} ${rounded && "rounded-full"} ${
+      outline && "btn-outline"
     }`}
     {...rest}
   >

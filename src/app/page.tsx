@@ -1,9 +1,21 @@
-import { HomeBanner } from "@/components/pages/Home";
+import { HomeBanner, ProductsGrid } from "@/components/pages/Home";
+import { Product } from "@/types";
 
-export default function Home() {
+async function getProducts() {
+  const response = await fetch("https://fakestoreapi.com/products", {
+    next: { revalidate: 10 },
+  });
+
+  return (await response.json()) as Product[];
+}
+
+export default async function Home() {
+  const products = await getProducts();
+
   return (
     <main className="flex flex-col">
       <HomeBanner />
+      <ProductsGrid products={products} />
     </main>
   );
 }

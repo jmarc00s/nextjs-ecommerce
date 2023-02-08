@@ -10,7 +10,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body className="min-h-screen">
+      <body className="min-h-screen" data-theme="light">
         <Navbar />
         <Content>{children}</Content>
         <Footer />
