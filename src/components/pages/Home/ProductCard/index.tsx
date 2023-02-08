@@ -25,8 +25,8 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           width="150"
         />
       </figure>
-      <div className="card-body">
-        <div className="py-4">
+      <div className="card-body gap-4">
+        <div className="gap-2">
           <div className="flex justify-between">
             <h2 className="font-bold whitespace-nowrap overflow-hidden text-ellipsis pr-2">
               {product.title}
@@ -40,6 +40,36 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             {product.description}
           </p>
         </div>
+
+        <div className="rating rating-xs">
+          <input
+            type="radio"
+            name="rating-4"
+            className="mask mask-star-2 bg-green-500"
+          />
+          <input
+            type="radio"
+            name="rating-4"
+            className="mask mask-star-2 bg-green-500"
+            checked
+          />
+          <input
+            type="radio"
+            name="rating-4"
+            className="mask mask-star-2 bg-green-500"
+          />
+          <input
+            type="radio"
+            name="rating-4"
+            className="mask mask-star-2 bg-green-500"
+          />
+          <input
+            type="radio"
+            name="rating-4"
+            className="mask mask-star-2 bg-green-500"
+          />
+        </div>
+
         <div className="card-actions">
           <Button rounded outline variant="secondary" size="sm">
             Add to card

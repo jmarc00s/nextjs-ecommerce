@@ -8,10 +8,13 @@ type ProductsGridProps = {
 
 export const ProductsGrid = ({ products }: ProductsGridProps) => {
   return (
-    <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 p-8">
-      {products.map((product) => (
-        <ProductCard product={product} key={product.id} />
-      ))}
+    <div className="pt-8">
+      <h2 className="text-2xl font-bold">Products</h2>
+      <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 py-8">
+        {products.map((product) => (
+          <ProductCard product={product} key={product.id} />
+        ))}
+      </div>
     </div>
   );
 };
