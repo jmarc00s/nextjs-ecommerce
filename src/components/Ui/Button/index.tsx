@@ -1,5 +1,6 @@
 import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
+import classNames from 'classnames';
 
 const btnStyles = cva(['btn'], {
   variants: {
@@ -33,13 +34,19 @@ export const Button = ({
   outline = false,
   circle = false,
   ...rest
-}: ButtonProps) => (
-  <button
-    className={`${btnStyles({ variant, size })} ${rounded && 'rounded-full'} ${
-      outline && 'btn-outline'
-    } ${circle && 'btn-circle'}`}
-    {...rest}
-  >
-    {children}
-  </button>
-);
+}: ButtonProps) => {
+  const classes = [
+    btnStyles({ variant, size }),
+    {
+      rounded: 'rounded-full',
+      outline: 'btn-outline',
+      circle: 'btn-circle',
+    },
+  ];
+
+  return (
+    <button className={classNames(classes)} {...rest}>
+      {children}
+    </button>
+  );
+};
