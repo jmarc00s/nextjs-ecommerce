@@ -24,6 +24,8 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
     rounded?: boolean;
     outline?: boolean;
     circle?: boolean;
+    block?: boolean;
+    wide?: boolean;
   };
 export const Button = ({
   children,
@@ -33,6 +35,8 @@ export const Button = ({
   rounded = false,
   outline = false,
   circle = false,
+  block = false,
+  wide = false,
   ...rest
 }: ButtonProps) => {
   const classes = [
@@ -40,6 +44,8 @@ export const Button = ({
     rounded && 'rounded-full',
     outline && 'btn-outline',
     circle && 'btn-circle',
+    block && 'btn-block',
+    wide && 'btn-wide',
   ];
 
   return (

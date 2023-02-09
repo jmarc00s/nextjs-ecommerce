@@ -1,7 +1,9 @@
 import { Button, Rating } from '@/components/Ui';
 
 import { Product } from '@/types';
+import { formatToBRL } from '@/utils/formatters/toBRL';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 type ProductCardProps = {
@@ -9,15 +11,13 @@ type ProductCardProps = {
 };
 
 export const ProductCard = ({ product }: ProductCardProps) => {
-  const price = Intl.NumberFormat('pt-BR', {
-    currency: 'BRL',
-    style: 'currency',
-    currencyDisplay: 'symbol',
-    minimumFractionDigits: 2,
-  }).format(product.price);
+  const price = formatToBRL(product.price);
 
   return (
-    <div className="card w-full bg-base-100 shadow-xl">
+    <Link
+      href={`/product/${product.id}`}
+      className="card w-full bg-base-100 shadow-xl"
+    >
       <figure className="flex items-center justify-center self-center max-w-full w-40 h-60">
         <Image
           src={product.image}
@@ -42,6 +42,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           </p>
 
           <Rating
+            classNames="pt-8"
             rate={product.rating.rate}
             numberOfRatings={product.rating.count}
           />
@@ -53,6 +54,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           </Button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
