@@ -37,11 +37,9 @@ export const Button = ({
 }: ButtonProps) => {
   const classes = [
     btnStyles({ variant, size }),
-    {
-      rounded: 'rounded-full',
-      outline: 'btn-outline',
-      circle: 'btn-circle',
-    },
+    rounded && 'rounded-full',
+    outline && 'btn-outline',
+    circle && 'btn-circle',
   ];
 
   return (
