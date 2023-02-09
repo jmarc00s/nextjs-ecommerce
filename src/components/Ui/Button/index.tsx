@@ -1,19 +1,19 @@
-import React, { ButtonHTMLAttributes, ReactNode } from "react";
-import { cva, VariantProps } from "class-variance-authority";
+import React, { ButtonHTMLAttributes, ReactNode } from 'react';
+import { cva, VariantProps } from 'class-variance-authority';
 
-const btnStyles = cva(["btn"], {
+const btnStyles = cva(['btn'], {
   variants: {
     variant: {
-      primary: ["btn-primary"],
-      secondary: ["btn-secondary"],
-      success: ["btn-success"],
-      error: ["btn-error"],
-      ghost: ["btn-ghost"],
+      primary: ['btn-primary'],
+      secondary: ['btn-secondary'],
+      success: ['btn-success'],
+      error: ['btn-error'],
+      ghost: ['btn-ghost'],
     },
     size: {
-      xs: ["btn-xs"],
-      sm: ["btn-sm"],
-      lg: ["btn-lg"],
+      xs: ['btn-xs'],
+      sm: ['btn-sm'],
+      lg: ['btn-lg'],
     },
   },
 });
@@ -22,6 +22,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof btnStyles> & {
     rounded?: boolean;
     outline?: boolean;
+    circle?: boolean;
   };
 export const Button = ({
   children,
@@ -30,12 +31,13 @@ export const Button = ({
   className,
   rounded = false,
   outline = false,
+  circle = false,
   ...rest
 }: ButtonProps) => (
   <button
-    className={`${btnStyles({ variant, size })} ${rounded && "rounded-full"} ${
-      outline && "btn-outline"
-    }`}
+    className={`${btnStyles({ variant, size })} ${rounded && 'rounded-full'} ${
+      outline && 'btn-outline'
+    } ${circle && 'btn-circle'}`}
     {...rest}
   >
     {children}

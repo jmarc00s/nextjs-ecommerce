@@ -8,14 +8,7 @@ type RatingProps = {
 };
 
 export const Rating = ({ rate, numberOfRatings = 0 }: RatingProps) => {
-  const [rating, setRating] = useState(() => {
-    if (rate) {
-      console.log(rate);
-      return Math.ceil(rate);
-    }
-
-    return 0;
-  });
+  const [rating, setRating] = useState(() => (rate ? Math.ceil(rate) : 0));
   const stars = [...Array(5)];
 
   const handleStarClick = (rate: number) => {
@@ -23,7 +16,6 @@ export const Rating = ({ rate, numberOfRatings = 0 }: RatingProps) => {
       setRating((prevState) => prevState - 1);
       return;
     }
-
     setRating(rate);
   };
 

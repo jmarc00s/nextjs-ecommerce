@@ -1,5 +1,5 @@
-import { Button } from '@/components/Ui';
-import { Rating } from '@/components/Ui/Rating';
+import { Button, Rating } from '@/components/Ui';
+
 import { Product } from '@/types';
 import Image from 'next/image';
 import React from 'react';
@@ -41,7 +41,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             {product.description}
           </p>
 
-          <Rating />
+          <Rating
+            rate={product.rating.rate}
+            numberOfRatings={product.rating.count}
+          />
         </div>
 
         <div className="card-actions">
