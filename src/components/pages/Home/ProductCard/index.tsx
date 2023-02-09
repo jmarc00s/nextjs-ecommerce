@@ -1,4 +1,5 @@
 import { Button } from '@/components/Ui';
+import { Rating } from '@/components/Ui/Rating';
 import { Product } from '@/types';
 import Image from 'next/image';
 import React from 'react';
@@ -39,35 +40,8 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           >
             {product.description}
           </p>
-        </div>
 
-        <div className="rating rating-xs">
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-            checked
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
+          <Rating />
         </div>
 
         <div className="card-actions">

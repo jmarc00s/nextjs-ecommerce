@@ -1,9 +1,9 @@
-import { HomeBanner, ProductsGrid } from "@/components/pages/Home";
-import { Product } from "@/types";
+import { HomeBanner, ProductsGrid } from '@/components/pages/Home';
+import { Product } from '@/types';
 
 async function getProducts() {
-  const response = await fetch("https://fakestoreapi.com/products", {
-    next: { revalidate: 10 },
+  const response = await fetch('https://fakestoreapi.com/products', {
+    cache: 'force-cache',
   });
 
   return (await response.json()) as Product[];
