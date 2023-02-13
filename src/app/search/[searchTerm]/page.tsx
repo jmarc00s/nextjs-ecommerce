@@ -24,9 +24,6 @@ export default async function SearchPage({
   params: { searchTerm },
 }: PageProps) {
   const searchedProducts = await getSearchedProducts(searchTerm);
-
-  console.log(searchedProducts);
-
   return (
     <section className="flex flex-col">
       <h1 className="text-xl">
