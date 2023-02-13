@@ -1,4 +1,4 @@
-import { HomeBanner, ProductsGrid } from '@/components/pages/Home';
+import { HomeBanner, ProductsGrid } from '@/modules/Home/components';
 import { Product } from '@/types';
 
 async function getProducts() {
