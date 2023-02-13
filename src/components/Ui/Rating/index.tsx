@@ -30,7 +30,7 @@ export const Rating = ({
   const starColor = disabled ? 'bg-green-300' : 'bg-green-500';
 
   return (
-    <div className="rating rating-xs">
+    <div className="rating rating-xs items-center">
       {stars.map((_, index) => (
         <button
           disabled={disabled}
