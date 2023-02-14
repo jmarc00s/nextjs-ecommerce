@@ -25,12 +25,12 @@ export default async function SearchPage({
   params: { searchTerm },
 }: PageProps) {
   const searchedProducts = await getSearchedProducts(searchTerm);
-  const hasProducts = searchedProducts.length > 0;
+  const hasResults = searchedProducts.length > 0;
   return (
     <section className="flex flex-col">
-      {!hasProducts && <EmptyState message={`No product(s) found`} />}
+      {!hasResults && <EmptyState message={`No product(s) found`} />}
 
-      {hasProducts && (
+      {hasResults && (
         <>
           <h1 className="text-xl">
             Searched term:{' '}
