@@ -1,5 +1,5 @@
 import { ProductsGrid } from '@/components/ProductsGrid';
-import { EmptyState } from '@/components/Ui/EmptyState';
+import { EmptyState } from '@/components/Ui';
 import { getProducts } from '@/services/products';
 import { Product } from '@/types';
 import React from 'react';
