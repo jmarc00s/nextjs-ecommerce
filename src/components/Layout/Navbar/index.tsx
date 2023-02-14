@@ -13,7 +13,12 @@ export const Navbar = () => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     const { value } = searchRef.current!;
-    router.push(`/search/${value}`);
+    if (value.trim().length) {
+      router.push(`/search/${value}`);
+      return;
+    }
+
+    router.push('/');
   };
 
   return (

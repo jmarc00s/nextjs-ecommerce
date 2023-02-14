@@ -27,7 +27,7 @@ export default async function SearchPage({
   const searchedProducts = await getSearchedProducts(searchTerm);
   const hasResults = searchedProducts.length > 0;
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col h-full justify-center">
       {!hasResults && <EmptyState message={`No product(s) found`} />}
 
       {hasResults && (
