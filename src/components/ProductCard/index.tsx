@@ -1,4 +1,7 @@
+'use client';
+
 import { Button, Rating } from '@/components/Ui';
+import { useStore } from '@/store';
 
 import { Product } from '@/types';
 import { formatToBRL } from '@/utils/formatters/toBRL';
@@ -12,6 +15,11 @@ type ProductCardProps = {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const price = formatToBRL(product.price);
+  const addOnCart = useStore((state) => state.addOnCart);
+
+  const handleAddToCardClick = () => {
+    addOnCart(product);
+  };
 
   return (
     <Link
@@ -49,7 +57,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         <div className="card-actions">
-          <Button rounded outline variant="secondary" size="sm">
+          <Button
+            onClick={handleAddToCardClick}
+            rounded
+            outline
+            variant="secondary"
+            size="sm"
+          >
             Add to card
           </Button>
         </div>

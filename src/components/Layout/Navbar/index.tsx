@@ -5,10 +5,12 @@ import React, { FormEvent, useRef } from 'react';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { Button } from '@/components/Ui';
 import { useRouter } from 'next/navigation';
+import { useStore } from '@/store';
 
 export const Navbar = () => {
   const searchRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
+  const count = useStore((state) => state.count);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -40,9 +42,14 @@ export const Navbar = () => {
             />
           </form>
         </div>
-        <Button variant="ghost" circle>
-          <ShoppingCartIcon className="h-8 w-8" />
-        </Button>
+        <div className="indicator">
+          <span className="indicator-item badge badge-secondary top-[20%] right-[10%]">
+            {count}
+          </span>
+          <Button variant="ghost" circle>
+            <ShoppingCartIcon className="h-8 w-8" />
+          </Button>
+        </div>
       </div>
     </div>
   );
