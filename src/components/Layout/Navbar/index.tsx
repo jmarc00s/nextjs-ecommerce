@@ -23,6 +23,8 @@ export const Navbar = () => {
     router.push('/');
   };
 
+  const handleShoppingCartClick = () => router.push('/checkout');
+
   return (
     <div className="navbar bg-base-300 px-4">
       <div className="navbar-start flex-1">
@@ -46,7 +48,7 @@ export const Navbar = () => {
           <span className="indicator-item badge badge-secondary top-[20%] right-[10%]">
             {count}
           </span>
-          <Button variant="ghost" circle>
+          <Button onClick={handleShoppingCartClick} variant="ghost" circle>
             <ShoppingCartIcon className="h-8 w-8" />
           </Button>
         </div>
