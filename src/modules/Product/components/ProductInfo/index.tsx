@@ -1,6 +1,6 @@
 import { Rating } from '@/components/Ui';
 import { Product } from '@/types';
-import { formatToBRL } from '@/utils/formatters/toBRL';
+import { formatToUSD } from '@/utils/formatters/toUSD';
 import React, { ReactElement } from 'react';
 
 type ProductInfoProps = {
@@ -11,8 +11,8 @@ export const ProductInfo = ({
   product: { title, price, description, rating },
 }: ProductInfoProps): ReactElement => {
   const { rate, count } = rating;
-  const brlPrice = formatToBRL(price);
-  const dividedPrice = formatToBRL(price / 6);
+  const usdPrice = formatToUSD(price);
+  const dividedPrice = formatToUSD(price / 6);
   return (
     <>
       <div className="w-full flex flex-col gap-4">
@@ -22,7 +22,7 @@ export const ProductInfo = ({
       </div>
       <div className="w-full">
         <div className="divider"></div>
-        <h3 className="text-2xl font-bold">{brlPrice}</h3>
+        <h3 className="text-2xl font-bold">{usdPrice}</h3>
         <p className="text-xs">or {dividedPrice} by month per 6 months</p>
         <div className="divider"></div>
       </div>

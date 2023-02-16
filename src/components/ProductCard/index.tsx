@@ -4,7 +4,7 @@ import { Button, Rating } from '@/components/Ui';
 import { useStore } from '@/store';
 
 import { Product } from '@/types';
-import { formatToBRL } from '@/utils/formatters/toBRL';
+import { formatToUSD } from '@/utils/formatters/toUSD';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -14,7 +14,7 @@ type ProductCardProps = {
 };
 
 export const ProductCard = ({ product }: ProductCardProps) => {
-  const price = formatToBRL(product.price);
+  const price = formatToUSD(product.price);
   const addOnCart = useStore((state) => state.addOnCart);
 
   const handleAddToCardClick = () => {

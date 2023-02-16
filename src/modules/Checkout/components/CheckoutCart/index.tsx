@@ -2,7 +2,8 @@
 
 import { Button } from '@/components/Ui';
 import { useStore } from '@/store';
-import { formatToBRL } from '@/utils/formatters/toBRL';
+
+import { formatToUSD } from '@/utils/formatters/toUSD';
 import React from 'react';
 import CheckoutCartList from './components/CheckoutCartList';
 
@@ -12,7 +13,7 @@ export const CheckoutCart = () => {
     totalPrice: state.totalPrice,
   }));
 
-  const totalInBRL = formatToBRL(totalPrice);
+  const totalInBRL = formatToUSD(totalPrice);
   const cartHasItems = cart.length;
 
   return (
@@ -23,7 +24,7 @@ export const CheckoutCart = () => {
       </div>
       <div className="divider"></div>
       <div className="flex justify-between mb-4">
-        <span className="text-xs font-semibold">Total(R$)</span>
+        <span className="text-xs font-semibold">Total</span>
         <span className="text-xs font-semibold">{totalInBRL}</span>
       </div>
       <Button disabled={!cartHasItems} block variant="success">
