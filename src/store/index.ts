@@ -6,6 +6,8 @@ type StoreType = {
   count: number;
   totalPrice: number;
   addOnCart: (item: Product) => void;
+  increaseQuantity: (id: Product['id']) => void;
+  decreaseQuantity: (id: Product['id']) => void;
 };
 
 export const useStore = create<StoreType>()((set) => ({
@@ -45,6 +47,51 @@ export const useStore = create<StoreType>()((set) => ({
           ...state.cart,
           { product: newProduct, quantity: 1, totalPrice: newProduct.price },
         ],
+      };
+    }),
+  increaseQuantity: (id: Product['id']) =>
+    set((state) => {
+      const productOnCart = state.cart.find((item) => item.product.id === id);
+      if (!productOnCart) return state;
+
+      let cart = state.cart;
+
+      const newProduct = {
+        ...productOnCart,
+        quantity: productOnCart.quantity + 1,
+        totalPrice: productOnCart.totalPrice + productOnCart.product.price,
+      };
+
+      cart.splice(cart.indexOf(productOnCart), 1, newProduct);
+
+      return {
+        ...state,
+        count: state.count + 1,
+        cart,
+        totalPrice: state.totalPrice + productOnCart.product.price,
+      };
+    }),
+  decreaseQuantity: (id: Product['id']) =>
+    set((state) => {
+      const productOnCart = state.cart.find((item) => item.product.id === id);
+      if (!productOnCart) return state;
+
+      let cart = state.cart;
+      const productPrice = productOnCart.product.price;
+
+      const newProduct = {
+        ...productOnCart,
+        quantity: productOnCart.quantity - 1,
+        totalPrice: productOnCart.totalPrice - productPrice,
+      };
+
+      cart.splice(cart.indexOf(productOnCart), 1, newProduct);
+
+      return {
+        ...state,
+        count: state.count - 1,
+        cart,
+        totalPrice: state.totalPrice - productPrice,
       };
     }),
 }));
