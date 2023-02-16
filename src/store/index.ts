@@ -19,6 +19,11 @@ export const useStore = create<StoreType>()((set) => ({
         (item) => item.product.id === newProduct.id
       );
 
+      const partialState = {
+        count: state.count + 1,
+        totalPrice: state.totalPrice + newProduct.price,
+      };
+
       if (productOnCart) {
         const newProductOnCart = {
           ...productOnCart,
@@ -29,18 +34,17 @@ export const useStore = create<StoreType>()((set) => ({
         cart.splice(cart.indexOf(productOnCart), 1, newProductOnCart);
 
         return {
+          ...partialState,
           cart,
-          count: state.count + 1,
-          totalPrice: state.totalPrice + newProduct.price,
         };
       }
 
       return {
+        ...partialState,
         cart: [
           ...state.cart,
           { product: newProduct, quantity: 1, totalPrice: newProduct.price },
         ],
-        count: state.count + 1,
       };
     }),
 }));
