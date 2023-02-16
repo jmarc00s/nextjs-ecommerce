@@ -4,12 +4,14 @@ import { create } from 'zustand';
 type StoreType = {
   cart: CartProduct[];
   count: number;
+  totalPrice: number;
   addOnCart: (item: Product) => void;
 };
 
 export const useStore = create<StoreType>()((set) => ({
   cart: [],
   count: 0,
+  totalPrice: 0,
   addOnCart: (newProduct: Product) =>
     set((state) => {
       let cart = state.cart;
@@ -29,6 +31,7 @@ export const useStore = create<StoreType>()((set) => ({
         return {
           cart,
           count: state.count + 1,
+          totalPrice: state.totalPrice + newProduct.price,
         };
       }
 
