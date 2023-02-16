@@ -2,11 +2,18 @@
 
 import { Button } from '@/components/Ui';
 import { useStore } from '@/store';
+import { formatToBRL } from '@/utils/formatters/toBRL';
 import React from 'react';
 import CheckoutCartList from './components/CheckoutCartList';
 
 export const CheckoutCart = () => {
-  const cart = useStore((state) => state.cart);
+  const { cart, totalPrice } = useStore((state) => ({
+    cart: state.cart,
+    totalPrice: state.totalPrice,
+  }));
+
+  const totalInBRL = formatToBRL(totalPrice);
+  const cartHasItems = cart.length;
 
   return (
     <div className="lg:w-1/3 w-full border p-4 flex flex-col">
@@ -14,7 +21,12 @@ export const CheckoutCart = () => {
       <div className="flex-1">
         <CheckoutCartList products={cart} />
       </div>
-      <Button block variant="success">
+      <div className="divider"></div>
+      <div className="flex justify-between mb-4">
+        <span className="text-xs font-semibold">Total(R$)</span>
+        <span className="text-xs font-semibold">{totalInBRL}</span>
+      </div>
+      <Button disabled={!cartHasItems} block variant="success">
         Confirm order
       </Button>
     </div>
