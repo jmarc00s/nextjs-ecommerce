@@ -10,3 +10,9 @@ export type Product = {
     count: number;
   };
 };
+
+export type CartProduct = {
+  product: Product;
+  quantity: number;
+  totalPrice: number;
+};

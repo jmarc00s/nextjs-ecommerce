@@ -1,8 +1,8 @@
-import { Product } from '@/types';
+import { CartProduct, Product } from '@/types';
 import { create } from 'zustand';
 
 type StoreType = {
-  cart: Product[];
+  cart: CartProduct[];
   count: number;
   addOnCart: (item: Product) => void;
 };
@@ -10,6 +10,34 @@ type StoreType = {
 export const useStore = create<StoreType>()((set) => ({
   cart: [],
   count: 0,
-  addOnCart: (item: Product) =>
-    set((state) => ({ cart: [...state.cart, item], count: state.count + 1 })),
+  addOnCart: (newProduct: Product) =>
+    set((state) => {
+      let cart = state.cart;
+      let productOnCart = state.cart.find(
+        (item) => item.product.id === newProduct.id
+      );
+
+      if (productOnCart) {
+        const newProductOnCart = {
+          ...productOnCart,
+          quantity: productOnCart.quantity + 1,
+          totalPrice: productOnCart.totalPrice + productOnCart.product.price,
+        };
+
+        cart.splice(cart.indexOf(productOnCart), 1, newProductOnCart);
+
+        return {
+          cart,
+          count: state.count + 1,
+        };
+      }
+
+      return {
+        cart: [
+          ...state.cart,
+          { product: newProduct, quantity: 1, totalPrice: newProduct.price },
+        ],
+        count: state.count + 1,
+      };
+    }),
 }));
