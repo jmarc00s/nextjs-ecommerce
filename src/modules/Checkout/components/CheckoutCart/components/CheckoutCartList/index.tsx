@@ -17,7 +17,7 @@ const CheckoutCartList = ({
     );
 
   return (
-    <ul className="flex flex-col gap-8 mt-8">
+    <ul className="flex flex-col gap-8 mt-8 overflow-auto">
       {products.map((product) => (
         <CheckoutCartListItem key={product.product.id} product={product} />
       ))}
