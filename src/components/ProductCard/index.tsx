@@ -22,10 +22,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <Link
-      href={`/product/${product.id}`}
-      className="card w-full bg-base-100 shadow-xl"
-    >
+    <article className="card w-full bg-base-100 shadow-xl">
       <figure className="flex items-center justify-center self-center max-w-full w-40 h-60">
         <Image
           src={product.image}
@@ -57,6 +54,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         <div className="card-actions">
+          <Link
+            href={`/product/${product.id}`}
+            className="btn btn-primary rounded-full btn-sm"
+          >
+            Details
+          </Link>
+
           <Button
             onClick={handleAddToCardClick}
             rounded
@@ -68,6 +72,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           </Button>
         </div>
       </div>
-    </Link>
+    </article>
   );
 };
