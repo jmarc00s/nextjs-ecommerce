@@ -1,4 +1,5 @@
 import { cva, VariantProps } from 'class-variance-authority';
+import classNames from 'classnames';
 import React, {
   forwardRef,
   InputHTMLAttributes,
@@ -28,6 +29,9 @@ const inputStyles = cva(['input w-full'], {
       lg: ['input-lg'],
     },
   },
+  defaultVariants: {
+    variant: 'bordered',
+  },
 });
 
 export type InputProps = VariantProps<typeof inputStyles> &
@@ -51,15 +55,16 @@ const InputComponent = (
   }: InputProps,
   ref: Ref<HTMLInputElement>
 ): ReactElement => (
-  <>
+  <div className={classNames('flex flex-col w-full', className)}>
     {!!label?.length && (
-      <label className="label" htmlFor={id}>
+      <label className="label font-semibold" htmlFor={id}>
         <span className={`label-text ${errorMessage?.length && 'text-error'}`}>
           {label}
         </span>
       </label>
     )}
     <input
+      ref={ref}
       data-testid="input"
       className={`${
         errorMessage?.length && 'input-error placeholder:text-error'
@@ -69,6 +74,7 @@ const InputComponent = (
         size,
       })}`}
       {...rest}
+      id={id}
       size={htmlSize}
     />
     {!!errorMessage?.length && (
@@ -78,7 +84,7 @@ const InputComponent = (
         </span>
       </label>
     )}
-  </>
+  </div>
 );
 
 export const Input = forwardRef(InputComponent);
