@@ -5,6 +5,7 @@ import { useStore } from '@/store';
 
 import { formatToUSD } from '@/utils/formatters/toUSD';
 import React from 'react';
+import { useCheckoutFormContext } from '../../context/form';
 import CheckoutCartList from './components/CheckoutCartList';
 
 export const CheckoutCart = () => {
@@ -13,8 +14,14 @@ export const CheckoutCart = () => {
     totalPrice: state.totalPrice,
   }));
 
+  const {
+    formState: { isValid: isDeliveryFormValid },
+  } = useCheckoutFormContext();
+
   const totalInBRL = formatToUSD(totalPrice);
-  const cartHasItems = cart.length;
+  const cartHasItems = !!cart.length;
+
+  const disableConfirm = !cartHasItems || !isDeliveryFormValid;
 
   return (
     <div className="lg:w-1/3 w-full border p-4 flex flex-col">
@@ -27,7 +34,7 @@ export const CheckoutCart = () => {
         <span className="text-xs font-semibold">Total</span>
         <span className="text-xs font-semibold">{totalInBRL}</span>
       </div>
-      <Button disabled={!cartHasItems} block variant="success">
+      <Button disabled={disableConfirm} block variant="success">
         Confirm order
       </Button>
     </div>
