@@ -14,7 +14,7 @@ export const CheckoutContainer = () => {
   const router = useRouter();
   const { clear } = useStore();
 
-  const onSubmit = (data: DeliveryForm) => {
+  const onSubmit = () => {
     router.push('/checkout/done');
     clear();
   };
