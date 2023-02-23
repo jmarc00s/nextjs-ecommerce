@@ -1,5 +1,7 @@
 'use client';
 
+import { useStore } from '@/store';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FormProvider } from 'react-hook-form';
 import { useCheckoutForm } from '../../context/form';
@@ -9,9 +11,12 @@ import { CheckoutDelivery } from '../CheckoutDelivery';
 
 export const CheckoutContainer = () => {
   const { ...methods } = useCheckoutForm();
+  const router = useRouter();
+  const { clear } = useStore();
 
   const onSubmit = (data: DeliveryForm) => {
-    console.log(data);
+    router.push('/checkout/done');
+    clear();
   };
 
   return (

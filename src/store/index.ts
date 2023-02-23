@@ -8,6 +8,7 @@ type StoreType = {
   addOnCart: (item: Product) => void;
   increaseQuantity: (id: Product['id']) => void;
   decreaseQuantity: (id: Product['id']) => void;
+  clear: () => void;
 };
 
 export const useStore = create<StoreType>()((set) => ({
@@ -94,4 +95,12 @@ export const useStore = create<StoreType>()((set) => ({
         totalPrice: state.totalPrice - productPrice,
       };
     }),
+  clear: () => {
+    set((state) => ({
+      ...state,
+      cart: [],
+      count: 0,
+      totalPrice: 0,
+    }));
+  },
 }));
